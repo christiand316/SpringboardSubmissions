@@ -44,4 +44,3 @@ function partition(arr, callBack) {
     }, [[],[]] );
 }
 
-
