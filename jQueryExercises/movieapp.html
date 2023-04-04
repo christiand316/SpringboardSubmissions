@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movie app</h1>
+    <form>
+        <input type="text" value="title" name= "title">
+        <input type="text" value="rating" name="rating">
+        
+        <input type="submit">
+        </form>
+    <ul>
+
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function () {
+    console.log("good");
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+
+            let title = $('input').eq(0).val();
+            let rating = $('input').eq(1).val();
+
+            
+            
+            $('ul').append($('<li>',{text: title + ' ' +rating}), $('<button>Delete</button>').on('click', function (e){
+                $(e.target).prev().remove();
+                $(e.target).remove();
+            }))
+        })
+    });
+    </script>
+</body>
+</html>
