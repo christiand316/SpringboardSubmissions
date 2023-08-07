@@ -1,0 +1,22 @@
+.Cell {
+  height: 100px;
+  width: 100px;
+  border-radius: 1px;
+  background-color: rgba(169, 169, 169, 0.5);
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+button {
+  background-color: grey;
+  border: none;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}
+.on{
+  background-color: rgb(246, 250, 0);
+}
+.off {
+  background-color: rgb(19, 19, 19);
+}
