@@ -90,9 +90,7 @@ class LinkedList {
 
     if (current && currentIndex === idx) {
       current.value = val;
-    } else {
-      console.error("Index out of bounds");
-    }
+    } 
     
     this.length += 1;
   }
