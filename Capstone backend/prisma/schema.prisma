@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database/dev.db"
+}
+
+model User {
+  id          String  @id @default(uuid())
+  name        String
+  groups      Group[] @relation(name: "UserGroups")
+  ownedGroups Group[] @relation(name: "OwnedGroups")
+}
+
+model Group {
+  id    String @id @default(uuid())
+  ownerId String
+  name  String
+  owner User   @relation(fields: [ownerId], references: [id], name: "OwnedGroups")
+  users User[] @relation(name: "UserGroups")
+
+  budget Budget?
+
+}
+
+model Budget {
+  id      String @id @default(uuid())
+
+  group   Group  @relation(fields: [groupId], references: [id])
+  groupId String @unique
+
+  recurringTransactions RecurringTransaction[]
+  oneTimeTransaction    OneTimeTransaction[]
+}
+
+model RecurringTransaction {
+  id    String @id @default(uuid())
+
+  budget   Budget @relation(fields: [budgetId], references: [id])
+  budgetId String
+
+  debts Debt[]
+  monthlyExpenses MonthlyExpenses[]
+}
+
+model Debt {
+  id          String @id @default(uuid())
+  description String
+  rate        Float
+
+  startTerm   String // year-m-d
+  totalTerm   Int //in months
+  totalAmount Float
+
+  recurringTransaction   RecurringTransaction? @relation(fields: [recurringTransactionId], references: [id]) // Nullable relationship
+  recurringTransactionId String
+}
+
+model MonthlyExpenses {
+  id          String @id @default(uuid())
+  description String
+
+  amount      Float //round 2 decimals
+
+  recurringTransaction   RecurringTransaction? @relation(fields: [recurringTransactionId], references: [id]) // Nullable relationship
+  recurringTransactionId String
+}
+
+model OneTimeTransaction {
+  id          String   @id @default(uuid())
+  description String
+  amount      Float
+  date        String
+
+  budget   Budget @relation(fields: [budgetId], references: [id])
+  budgetId String 
+}
