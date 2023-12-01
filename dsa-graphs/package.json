@@ -1,0 +1,16 @@
+{
+  "name": "dsa-graphs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "graph.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.1",
+    "jest": "^24.1.0"
+  }
+}
