@@ -1,0 +1,1 @@
+Thank you to https://dev.to/wizdomtek/typescript-express-building-robust-apis-with-nodejs-1fln for showing how to add type safety to an Express project
